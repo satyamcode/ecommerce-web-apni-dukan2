@@ -14,7 +14,7 @@
   "author": "satyam gupta",
   "license": "MIT",
   "dependencies": {
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    
     "bcrypt": "^5.1.0",
     "braintree": "^3.16.0",
     "colors": "^1.4.0",
