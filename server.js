@@ -18,10 +18,23 @@ const app=express()
  // esmodulefix
 const __filename=fileURLToPath(import.meta.url);
 const __dirname=path.dirname(__filename);
+const allowedOrigins = ['https://ecommerce-web-apni-dukan2.onrender.com'];
 
 
-//  middlewares
-app.use(cors());
+//  middleware
+
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
+    optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+  })
+);
 app.use(express.json()); //we can us body parser also 
 app.use(morgan('dev'));
 app.use(express.static(path.join(__dirname,'./client/build')));
